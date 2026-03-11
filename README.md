@@ -1,12 +1,12 @@
-# littk
+# littkk
 
 Like `Headroom` — hides and shows elements on scroll — works on multiple elements, in any direction, with no classes, no config files, and no framework adapters.
 
-Just add a `data-scroll-hide` attribute and call `littk()`!
+Just add a `data-scroll-hide` attribute and call `littkk()`!
 
 ## Online Demos
 
-https://suhaotian.github.io/littk
+https://suhaotian.github.io/littkk
 
 ## Attributes
 
@@ -25,7 +25,7 @@ Add `data-scroll-hide` to any `position: fixed | sticky | absolute` element.
 ## Options
 
 ```ts
-littk({
+littkk({
   scrollTarget: "#my-div", // window (default), HTMLElement, or selector
   threshold: 5, // min px delta before triggering
   showAtTop: true, // force-show when scroll position is 0
@@ -48,8 +48,8 @@ littk({
 </footer>
 
 <script type="module">
-  import { littk } from "littk";
-  littk();
+  import { littkk } from "littkk";
+  littkk();
 </script>
 ```
 
@@ -57,9 +57,9 @@ littk({
 
 ```tsx
 import { useEffect } from "react";
-import { littk, LittkOptions } from "littk";
+import { littkk, LittkkOptions } from "littkk";
 
-function useLittk(options?: LittkOptions) {
+function useLittkk(options?: LittkkOptions) {
   useEffect(() => {
     const ctrl = littk(options);
     return () => ctrl.destroy();
@@ -69,7 +69,7 @@ function useLittk(options?: LittkOptions) {
 
 ```tsx
 export default function App() {
-  useLittk();
+  useLittkk();
 
   return (
     <>
@@ -92,7 +92,7 @@ export default function Feed() {
 
   useEffect(() => {
     if (!containerRef.current) return;
-    const ctrl = littk({ scrollTarget: containerRef.current });
+    const ctrl = littkk({ scrollTarget: containerRef.current });
     return () => ctrl.destroy();
   }, []);
 
@@ -111,9 +111,9 @@ export default function Feed() {
 ```vue
 <script setup>
 import { onMounted, onUnmounted } from "vue";
-import { littk } from "littk";
+import { littkk } from "littkk";
 
-const ctrl = littk();
+const ctrl = littkk();
 onUnmounted(() => ctrl.destroy());
 </script>
 
@@ -132,13 +132,13 @@ For a scrollable container:
 ```vue
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { littk } from "littk";
+import { littkk } from "littkk";
 
 const containerRef = ref(null);
 let ctrl;
 
 onMounted(() => {
-  ctrl = littk({ scrollTarget: containerRef.value });
+  ctrl = littkk({ scrollTarget: containerRef.value });
 });
 onUnmounted(() => ctrl?.destroy());
 </script>
@@ -162,8 +162,8 @@ Call `ctrl.refresh()` after conditionally rendered elements mount — e.g. in a 
 
 ## Reporting Issues
 
-Found an issue? Please feel free to [create issue](https://github.com/suhaotian/littk/issues/new)
+Found an issue? Please feel free to [create issue](https://github.com/suhaotian/littkk/issues/new)
 
 ## Support
 
-If you find this project helpful, consider [buying me a coffee](https://github.com/suhaotian/littk/stargazers).
+If you find this project helpful, consider [buying me a coffee](https://github.com/suhaotian/littkk/stargazers).

@@ -21,15 +21,15 @@
  *   data-always-show      never hidden regardless of scroll direction.
  *
  * Usage:
- *   const ctrl = littk()
+ *   const ctrl = littkk()
  *   ctrl.refresh()   // re-scan DOM after lazy-loaded elements mount
  *   ctrl.destroy()   // call on route change / component unmount
  *
- *   littk({ scrollTarget: '#my-div' })
- *   littk({ scrollTarget: containerRef.current })
+ *   littkk({ scrollTarget: '#my-div' })
+ *   littkk({ scrollTarget: containerRef.current })
  */
 
-export interface LittkOptions {
+export interface LittkkOptions {
   /** window (default), CSS selector string, or HTMLElement. */
   scrollTarget?: Window | HTMLElement | string;
   /** Minimum px delta before direction change triggers show/hide. Default: 5 */
@@ -38,14 +38,14 @@ export interface LittkOptions {
   showAtTop?: boolean;
 }
 
-export interface LittkController {
+export interface LittkkController {
   /** Re-scan DOM and sync new elements to current scroll state. */
   refresh: () => void;
   /** Remove scroll listener and reset all element styles. */
   destroy: () => void;
 }
 
-export function littk(options: LittkOptions = {}): LittkController {
+export function littkk(options: LittkkOptions = {}): LittkkController {
   const { scrollTarget, threshold = 5, showAtTop = true } = options;
 
   type Role = "header" | "footer" | "left" | "right";

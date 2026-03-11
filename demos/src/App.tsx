@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { littk } from "littk";
+import { littkk } from "littkk";
 
 export function App() {
   return <LittkDemo />;
@@ -12,7 +12,7 @@ const LittkDemo = () => {
 
   // Basic Headroom Logic simulation
   useEffect(() => {
-    const ctrl = littk();
+    const ctrl = littkk();
     return () => ctrl.destroy();
   }, []);
 
