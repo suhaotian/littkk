@@ -1,5 +1,5 @@
 # CHANGELOG
 
-## v1.0.0-alpha.0
+## v1.0.0
 
 🥳 Publish first version 🎉
