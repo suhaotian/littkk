@@ -1,6 +1,6 @@
 # littkk
 
-Like `Headroom` — hides and shows elements on scroll — works on multiple elements, in any direction, with no classes, no config files, and no framework adapters.
+Hides and shows elements on scroll — works on multiple elements, in any direction, with no classes, no config files, and no framework adapters.
 
 Just add a `data-scroll-hide` attribute and call `littkk()`!
 
