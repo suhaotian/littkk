@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import { littkk } from "littkk";
+import { GithubIcon } from "lucide-react";
 
 export function App() {
   return <LittkDemo />;
@@ -35,11 +36,11 @@ const LittkDemo = () => {
         <h1 className="text-xl font-black tracking-tight text-indigo-600">
           littkk.js
         </h1>
-        <button
-          onClick={playClick}
-          className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-          <div className="w-6 h-6 bg-slate-800 rounded-sm" />
-        </button>
+        <a
+          href="https://github.com/suhaotian/littkk"
+          className="p-2 hover:bg-slate-100 rounded-full border transition-colors leading-0">
+          <GithubIcon className="w-6 h-6 rounded-sm" />
+        </a>
       </div>
 
       {/* TABS: Sticky below header */}

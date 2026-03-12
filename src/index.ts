@@ -54,10 +54,8 @@ export interface LittkkController {
   refresh: () => void;
   /** Remove scroll listener and reset all element styles. */
   destroy: () => void;
-  /** disable */
-  disable: () => void;
-  /** enable */
-  enable: () => void;
+  /** Set enable or disable */
+  setEnable: (enable: boolean) => void;
 }
 
 export function littkk(options: LittkkOptions = {}): LittkkController {
@@ -75,8 +73,13 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
     | "data-scroll-right";
   type EdgeProp = "top" | "bottom" | "left" | "right";
 
+  enum Kind {
+    hide = 1,
+    distance = 2,
+  }
+
   type HideItem = {
-    kind: "hide";
+    kind: Kind.hide;
     el: HTMLElement;
     duration: number;
     delay: number;
@@ -84,7 +87,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
   };
 
   type DistanceItem = {
-    kind: "distance";
+    kind: Kind.distance;
     el: HTMLElement;
     edgeProp: EdgeProp;
     duration: number;
@@ -98,7 +101,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
   const TRANSFORM = "transform";
   const TRANSITION = "transition";
   const NONE = "none";
-
+  const PREFIX = `data-scroll-`;
   /**
    * Ordered list — first match wins when multiple data-scroll-* attrs are present.
    * [scrollAttr, translateFn, edgeProp, sizeProp, sign]
@@ -110,11 +113,19 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
     "offsetHeight" | "offsetWidth",
     1 | -1
   ][] = [
-    ["data-scroll-top", "translateY", "top", "offsetHeight", -1],
-    ["data-scroll-bottom", "translateY", "bottom", "offsetHeight", 1],
-    ["data-scroll-left", "translateX", "left", "offsetWidth", -1],
-    ["data-scroll-right", "translateX", "right", "offsetWidth", 1],
-  ];
+    ["top" as "data-scroll-top", "Y", "", "Height", -1],
+    ["bottom" as "data-scroll-top", "Y", "", "Height", 1],
+    ["left" as "data-scroll-top", "X", "", "Width", -1],
+    ["right" as "data-scroll-top", "X", "", "Width", 1],
+  ].map((items) => {
+    return [
+      PREFIX + items[0],
+      `translate${items[1]}`,
+      items[0],
+      `offset${items[3]}`,
+      items[4],
+    ] as [ScrollAttr, string, EdgeProp, "offsetHeight" | "offsetWidth", 1 | -1];
+  });
 
   let enable = _enable;
   let managed: Item[] = [];
@@ -209,7 +220,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
           }
           return [
             {
-              kind: "distance",
+              kind: Kind.distance,
               el,
               edgeProp,
               duration,
@@ -229,7 +240,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
       const [, fn, edgeProp, sizeProp, sign] = hideMatch;
       return [
         {
-          kind: "hide",
+          kind: Kind.hide,
           el,
           duration,
           delay,
@@ -244,7 +255,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
     hideTimers.forEach(clearTimeout);
     hideTimers.clear();
     for (const item of managed) {
-      if (item.kind === "hide") {
+      if (item.kind === Kind.hide) {
         setHideTransform(item.el, "", animated, item.duration);
       } else {
         setDistanceEdge(item, false);
@@ -259,7 +270,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
     hideTimers.clear();
     for (const item of managed) {
       const apply =
-        item.kind === "hide"
+        item.kind === Kind.hide
           ? () => {
               hideTimers.delete(item.el);
               if (!destroyed)
@@ -331,7 +342,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
       hideTimers.forEach(clearTimeout);
       hideTimers.clear();
       for (const item of managed) {
-        if (item.kind === "hide") {
+        if (item.kind === Kind.hide) {
           setHideTransform(item.el, item.hideTransform, false, 0);
         } else {
           setDistanceEdge(item, true);
@@ -347,7 +358,7 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
     hideTimers.clear();
     if (eventTarget) eventTarget.removeEventListener("scroll", onScroll);
     for (const item of managed) {
-      if (item.kind === "hide") {
+      if (item.kind === Kind.hide) {
         item.el.style[TRANSITION] = "";
         item.el.style[TRANSFORM] = "";
       } else {
@@ -366,11 +377,8 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
   return {
     refresh,
     destroy,
-    enable() {
-      enable = true;
-    },
-    disable() {
-      enable = false;
+    setEnable(value: boolean) {
+      enable = value;
     },
   };
 }
