@@ -113,19 +113,11 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
     "offsetHeight" | "offsetWidth",
     1 | -1
   ][] = [
-    ["top" as "data-scroll-top", "Y", "", "Height", -1],
-    ["bottom" as "data-scroll-top", "Y", "", "Height", 1],
-    ["left" as "data-scroll-top", "X", "", "Width", -1],
-    ["right" as "data-scroll-top", "X", "", "Width", 1],
-  ].map((items) => {
-    return [
-      PREFIX + items[0],
-      `translate${items[1]}`,
-      items[0],
-      `offset${items[3]}`,
-      items[4],
-    ] as [ScrollAttr, string, EdgeProp, "offsetHeight" | "offsetWidth", 1 | -1];
-  });
+    [`${PREFIX}top`, "translateY", "top", "offsetHeight", -1],
+    [`${PREFIX}bottom`, "translateY", "bottom", "offsetHeight", 1],
+    [`${PREFIX}left`, "translateX", "left", "offsetWidth", -1],
+    [`${PREFIX}right`, "translateX", "right", "offsetWidth", 1],
+  ];
 
   let enable = _enable;
   let managed: Item[] = [];
@@ -144,14 +136,14 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
    * doesn't capture the already-mutated targetValue as the original.
    */
   /** Cache of original edge values per element per prop, persisted across re-scans. */
-  const originalEdgeValues = new WeakMap<HTMLElement, Record<string, string>>();
+  const originalEdgeValues = new Map<HTMLElement, Record<string, string>>();
 
   /**
    * Normalise a data-scroll-* value to a valid CSS value.
    * Bare numbers get "px" appended; values with units are used as-is.
    */
   function normaliseCSSValue(raw: string): string {
-    return String(parseFloat(raw)) === raw.trim() ? `${raw}px` : raw;
+    return `${parseFloat(raw)}` === raw.trim() ? `${raw}px` : raw;
   }
 
   function setHideTransform(
@@ -314,7 +306,6 @@ export function littkk(options: LittkkOptions = {}): LittkkController {
   }
 
   function init() {
-    if (typeof window === "undefined") return;
     if (!scrollTarget || scrollTarget === window) {
       eventTarget = window;
       getScrollTop = () => window.scrollY;
