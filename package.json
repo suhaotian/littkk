@@ -4,7 +4,7 @@
   "description": "A more powerful and flexible headroom library that hides site headers or footers when scrolling down and reveals them again when scrolling up.",
   "repository": "suhaotian/littkk",
   "bugs": "https://github.com/suhaotian/littkk/issues",
-  "homepage": "https://suhaotian.github.io/littkk",
+  "homepage": "https://littkk.tsdk.dev",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

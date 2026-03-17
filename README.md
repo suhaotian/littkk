@@ -1,4 +1,4 @@
-# [Littkk](https://suhaotian.github.io/littkk/) &middot; [![Size](https://deno.bundlejs.com/badge?q=littkk&treeshake=[{littkk}]&config={%22esbuild%22:{%22external%22:[%22react%22,%22react-dom%22,%22react/jsx-runtime%22]}})](https://bundlejs.com/?q=littkk&treeshake=%5B%7Blittkk%7D%5D&config=%7B%22esbuild%22:%7B%22external%22:%5B%22react%22,%22react-dom%22,%22react/jsx-runtime%22%5D%7D%7D) [![npm version](https://img.shields.io/npm/v/littkk.svg?style=flat)](https://www.npmjs.com/package/littkk) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/suhaotian/littkk/pulls) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/suhaotian/littkk/blob/main/LICENSE) [![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/littkk) ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label&color=blue)
+# [Littkk](https://littkk.tsdk.dev/) &middot; [![Size](https://deno.bundlejs.com/badge?q=littkk&treeshake=[{littkk}]&config={%22esbuild%22:{%22external%22:[%22react%22,%22react-dom%22,%22react/jsx-runtime%22]}})](https://bundlejs.com/?q=littkk&treeshake=%5B%7Blittkk%7D%5D&config=%7B%22esbuild%22:%7B%22external%22:%5B%22react%22,%22react-dom%22,%22react/jsx-runtime%22%5D%7D%7D) [![npm version](https://img.shields.io/npm/v/littkk.svg?style=flat)](https://www.npmjs.com/package/littkk) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/suhaotian/littkk/pulls) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/suhaotian/littkk/blob/main/LICENSE) [![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/littkk) ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label&color=blue)
 
 Hide and show elements on scroll — works on multiple elements, in any direction, with no classes, no config files, and no framework adapters.
 
@@ -6,7 +6,7 @@ Just add a `data-scroll-top` (or `bottom` / `left` / `right`) attribute and call
 
 ## Online Demos
 
-https://suhaotian.github.io/littkk
+https://littkk.tsdk.dev
 
 ## Attributes
 

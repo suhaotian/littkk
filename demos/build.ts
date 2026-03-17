@@ -144,7 +144,7 @@ const result = await Bun.build({
     "process.env.NODE_ENV": JSON.stringify("production"),
   },
   ...cliConfig,
-  publicPath: '/littkk/',
+  // publicPath: '/littkk/',
 });
 
 const end = performance.now();
